@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  php:
+    build: .
+    container_name: sylius-last-seen-plugin
+    working_dir: /application
+    volumes:
+    - .:/application
+    ports:
+      - 80:8080
+  mysql:
+    image: mysql:5.7
+    container_name: websnacks_last_seen_plugin
+    environment:
+    - MYSQL_ROOT_PASSWORD=root123
+    - MYSQL_DATABASE=symfony
+    - MYSQL_USER=yser
+    - MYSQL_PASSWORD=secret
+    - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+    - "3306:3306"
+volumes:
+  plugin_db:
