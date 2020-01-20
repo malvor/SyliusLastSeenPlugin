@@ -1,1 +1,3 @@
-services:
+imports:
+- { resource: services/event_listener.yaml }
+- { resource: services/factory.yaml }

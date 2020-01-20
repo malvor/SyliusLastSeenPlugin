@@ -1,0 +1,7 @@
+services:
+    websnacks_sylius_last_seen_plugin.custom_factory.product_seen_log:
+        class: Websnacks\SyliusLastSeenPlugin\Factory\ProductSeenLogFactory
+        decorates: websnacks_sylius_last_seen_plugin.factory.product_seen_log
+        public: false
+        arguments:
+          - "@websnacks_sylius_last_seen_plugin.custom_factory.product_seen_log.inner"

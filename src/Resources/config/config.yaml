@@ -1,0 +1,3 @@
+imports:
+  - { resource: resources/last_seen.yaml }
+  - { resource: services.yaml }

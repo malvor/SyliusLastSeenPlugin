@@ -1,0 +1,7 @@
+sylius_resource:
+    resources:
+        websnacks_sylius_last_seen_plugin.product_seen_log:
+          driver: doctrine/orm
+          classes:
+              model: Websnacks\SyliusLastSeenPlugin\Entity\ProductSeenLog
+              interface: Websnacks\SyliusLastSeenPlugin\Entity\ProductSeenLogInterface
