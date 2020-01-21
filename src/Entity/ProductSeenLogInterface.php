@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Websnacks\SyliusLastSeenPlugin\Entity;
 
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ShopUserInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -20,4 +21,8 @@ interface ProductSeenLogInterface extends ResourceInterface
     public function setProduct(ProductInterface $product): void;
 
     public function getProduct(): ProductInterface;
+
+    public function getChannel(): ChannelInterface;
+
+    public function setChannel(ChannelInterface $channel): void ;
 }

@@ -82,10 +82,10 @@ final class VisitProductListener
         $user = $token ? $token->getUser() : null;
         $cookieToken = $request->cookies->get('PHPSESSID');
         if (!$user instanceof ShopUserInterface) {
-            $productSeenLog = $this->productSeenLogFactory->createWithCookie($cookieToken);
+            $productSeenLog = $this->productSeenLogFactory->createWithCookie($cookieToken, $this->channel);
             return $productSeenLog;
         }
-        return $this->productSeenLogFactory->createForUserWithCookie($user, $cookieToken);
+        return $this->productSeenLogFactory->createForUserWithCookie($user, $cookieToken, $this->channel);
     }
 
 }

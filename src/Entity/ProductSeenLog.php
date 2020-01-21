@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Websnacks\SyliusLastSeenPlugin\Entity;
 
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ShopUserInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
@@ -19,6 +20,8 @@ final class ProductSeenLog implements TimestampableInterface, ProductSeenLogInte
     protected $product;
 
     protected $shopUser;
+
+    protected $channel;
 
     public function getId()
     {
@@ -53,6 +56,16 @@ final class ProductSeenLog implements TimestampableInterface, ProductSeenLogInte
     public function getProduct(): ProductInterface
     {
         return $this->product;
+    }
+
+    public function setChannel(ChannelInterface $channel): void
+    {
+        $this->channel = $channel;
+    }
+
+    public function getChannel(): ChannelInterface
+    {
+        return $this->channel;
     }
 
 }

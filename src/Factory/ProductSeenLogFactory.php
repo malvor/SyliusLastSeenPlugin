@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Websnacks\SyliusLastSeenPlugin\Factory;
 
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ShopUserInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Websnacks\SyliusLastSeenPlugin\Entity\ProductSeenLogInterface;
@@ -26,7 +27,7 @@ class ProductSeenLogFactory implements ProductSeenLogFactoryInterface
     }
 
     /**
-     * @return ProductSeenLogInterface
+     * {@inheritdoc}
      */
     public function createNew(): ProductSeenLogInterface
     {
@@ -36,26 +37,23 @@ class ProductSeenLogFactory implements ProductSeenLogFactoryInterface
     }
 
     /**
-     * @param ShopUserInterface $shopUser
-     * @param string $cookie
-     * @return ProductSeenLogInterface
+     * {@inheritdoc}
      */
-    public function createForUserWithCookie(ShopUserInterface $shopUser, string $cookie): ProductSeenLogInterface
+    public function createForUserWithCookie(ShopUserInterface $shopUser, string $cookie, ChannelInterface $channel): ProductSeenLogInterface
     {
-        $productSeenLog = $this->createNew();
+        $productSeenLog = $this->createWithCookie($cookie, $channel);
         $productSeenLog->setShopUser($shopUser);
-        $productSeenLog->setCookie($cookie);
         return $productSeenLog;
     }
 
     /**
-     * @param string $cookie
-     * @return ProductSeenLogInterface
+     * {@inheritdoc}
      */
-    public function createWithCookie(string $cookie): ProductSeenLogInterface
+    public function createWithCookie(string $cookie, ChannelInterface $channel): ProductSeenLogInterface
     {
         $productSeenLog = $this->createNew();
         $productSeenLog->setCookie($cookie);
+        $productSeenLog->setChannel($channel);
         return $productSeenLog;
     }
 }
