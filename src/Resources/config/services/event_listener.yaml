@@ -1,6 +1,12 @@
 services:
   websnacks_sylius_tag_plugin.event_listener.tag_aware_listener:
       class: Websnacks\SyliusLastSeenPlugin\EventListener\VisitProductListener
-      arguments: ["@security.token_storage", "@websnacks_sylius_last_seen_plugin.custom_factory.product_seen_log", "@sylius.repository.product", "@=service('sylius.context.channel').getChannel()", "@=service('sylius.context.locale').getLocaleCode()"]
+      arguments:
+          - "@security.token_storage"
+          - "@websnacks_sylius_last_seen_plugin.custom_factory.product_seen_log"
+          - "@sylius.repository.product"
+          - "@=service('sylius.context.channel').getChannel()"
+          - "@=service('sylius.context.locale').getLocaleCode()"
+          - "@websnacks_sylius_last_seen_plugin.manager.product_seen_log"
       tags:
       - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

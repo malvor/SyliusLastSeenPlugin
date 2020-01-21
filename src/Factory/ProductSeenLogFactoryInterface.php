@@ -9,5 +9,7 @@ use Websnacks\SyliusLastSeenPlugin\Entity\ProductSeenLogInterface;
 
 interface ProductSeenLogFactoryInterface extends FactoryInterface
 {
-    public function createForUser(ShopUserInterface $shopUser): ProductSeenLogInterface;
+    public function createForUserWithCookie(ShopUserInterface $shopUser, string $cookie): ProductSeenLogInterface;
+
+    public function createWithCookie(string $cookie): ProductSeenLogInterface;
 }

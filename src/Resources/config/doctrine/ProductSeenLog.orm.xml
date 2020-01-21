@@ -13,5 +13,11 @@
         <field name="createdAt" type="datetime" column="created_at">
             <gedmo:timestampable on="create"/>
         </field>
+        <many-to-one field="product" target-entity="Sylius\Component\Product\Model\ProductInterface">
+            <join-column name="product_id" referenced-column-name="id" nullable="true" />
+        </many-to-one>
+        <many-to-one field="shopUser" target-entity="Sylius\Component\Core\Model\ShopUserInterface">
+            <join-column name="shop_user_id" referenced-column-name="id" nullable="true" />
+        </many-to-one>
     </mapped-superclass>
 </doctrine-mapping>
