@@ -8,30 +8,38 @@ use Sylius\Component\Core\Model\ShopUserInterface;
 
 class ProductSeenLogRepository extends EntityRepository implements ProductSeenLogRepositoryInterface
 {
+    /** {@inheritdoc} */
     public function findLastSeenByCookie(string $cookie, int $records): array
     {
-        return $this->createQueryBuilder('psl')
+        return $this->lastSeenQuery($cookie, null, $records);
+    }
+
+    /** {@inheritdoc} */
+    public function findLastSeenByShopUser(ShopUserInterface $user, string $cookie, int $records): array
+    {
+        return $this->lastSeenQuery($cookie, $user, $records);
+    }
+
+    /**
+     * @param string $cookie
+     * @param null|ShopUserInterface $user
+     * @param int $records
+     * @return array
+     */
+    private function lastSeenQuery(string $cookie, ?ShopUserInterface $user, int $records): array
+    {
+        $queryBuilder = $this->createQueryBuilder('psl')
             ->where('psl.cookie = :cookie')
             ->setParameter(':cookie', $cookie)
             ->orderBy('psl.createdAt', 'DESC')
-            ->setMaxResults($records)
-            ->getQuery()
-            ->getResult();
-    }
+            ->setMaxResults($records);
+        if (null !== $user) {
+            $queryBuilder
+                ->orWhere('psl.shopUser = :user')
+                ->setParameter(':user', $user);
+        }
 
-    public function findLastSeenByShopUser(ShopUserInterface $user, string $cookie, int $records): array
-    {
-        return $this->createQueryBuilder('psl')
-            ->where('psl.cookie = :cookie')
-            ->orWhere('psl.shopUser = :user')
-            ->setParameters([
-                    ':user' => $user,
-                    'cookie' => $cookie
-                ]
-            )
-            ->orderBy('psl.createdAt', 'DESC')
-            ->setMaxResults($records)
-            ->getQuery()
+        return $queryBuilder->getQuery()
             ->getResult();
     }
 }
