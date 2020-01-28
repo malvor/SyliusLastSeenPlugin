@@ -5,3 +5,4 @@ sylius_resource:
           classes:
               model: Websnacks\SyliusLastSeenPlugin\Entity\ProductSeenLog
               interface: Websnacks\SyliusLastSeenPlugin\Entity\ProductSeenLogInterface
+              repository: Websnacks\SyliusLastSeenPlugin\Repository\ProductSeenLogRepository

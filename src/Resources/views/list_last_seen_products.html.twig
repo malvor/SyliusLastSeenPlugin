@@ -1,0 +1,11 @@
+{% if last_seen_products|length > 0 %}
+    <h2 class="ui horizontal section divider header">
+        {{ 'websnacks_sylius_last_seen_plugin.ui.last_seen'|trans }}
+    </h2>
+    <div class="ui four doubling cards">
+        {% for last_seen_product in last_seen_products %}
+            {% set product = last_seen_product.product %}
+            {% include '@SyliusShop/Product/_box.html.twig' %}
+        {% endfor %}
+    </div>
+{% endif %}

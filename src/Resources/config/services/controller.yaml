@@ -1,0 +1,9 @@
+services:
+    websnacks_sylius_last_seen_plugin.controller.action.last_last_seen_products:
+        class: Websnacks\SyliusLastSeenPlugin\Controller\Action\ListLastSeenProducts
+        arguments:
+            - "@security.token_storage"
+            - "@websnacks_sylius_last_seen_plugin.repository.product_seen_log"
+            - "@templating.engine.twig"
+        tags:
+            - { name: controller.service_arguments }

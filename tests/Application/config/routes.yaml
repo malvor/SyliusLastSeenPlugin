@@ -1,0 +1,2 @@
+websnacks_sylius_last_seen_plugin:
+    resource: "@WebsnacksSyliusLastSeenPlugin/Resources/config/routing/shop.yaml"

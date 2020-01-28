@@ -1,0 +1,2 @@
+websnacks_sylius_last_seen_plugin_shop_last_seen:
+  resource: shop/last_seen.yaml

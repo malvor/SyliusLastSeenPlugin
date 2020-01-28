@@ -1,0 +1,4 @@
+websnacks_sylius_last_seen_plugin_shop_last_seen_index:
+  path: /last-seen
+  defaults:
+    _controller: websnacks_sylius_last_seen_plugin.controller.action.last_last_seen_products
